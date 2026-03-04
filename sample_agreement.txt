@@ -1,0 +1,35 @@
+# RESIDENTIAL LEASE AGREEMENT
+
+This Lease Agreement ("Lease") is made on this 1st day of March, 2026, by and between:
+
+**Landlord**: Mr. John Doe, 123 Property St., City.
+**Tenant**: Mrs. Jane Smith, 456 Current Ave, City.
+
+### 1. PROPERTY
+The Landlord agrees to lease to the Tenant the residential property located at:
+Apartment 101, Sky High Towers, Tech Park Road, City.
+
+### 2. LEASE TERM
+The term of this lease shall be for 11 months, commencing on March 1, 2026, and ending on January 31, 2027.
+
+### 3. RENT
+The Tenant agrees to pay a monthly rent of $1,500. Rent is due on the 1st of each month. A **late fee** of 10% shall be applied if rent is not paid within 5 days of the due date.
+
+### 4. SECURITY DEPOSIT
+The Tenant shall pay a **security deposit** of $9,000 (equivalent to 6 months of rent). This deposit is refundable at the end of the lease, subject to deductions for damages.
+
+### 5. NOTICE PERIOD
+Either party must provide a **notice period** of 4 months before terminating this lease.
+
+### 6. LOCK-IN PERIOD
+The Tenant is subject to a **lock-in period** of 12 months. Early termination during this period will result in forfeiture of the security deposit.
+
+### 7. RENEWAL
+A **renewal** option is available if both parties agree 30 days before the lease expiry.
+
+### 8. MAINTENANCE
+The Tenant is responsible for monthly **maintenance charges** of $100.
+
+---
+**Landlord Signature**: _________________
+**Tenant Signature**: _________________
