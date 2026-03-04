@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import os
 import shutil
@@ -6,6 +7,14 @@ from . import models, schemas, database
 from .services import extraction, scoring, chatbot
 
 app = FastAPI(title="RentAware API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Create database tables
 models.Base.metadata.create_all(bind=database.engine)

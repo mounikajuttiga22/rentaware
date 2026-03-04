@@ -2,122 +2,121 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RentAware | AI-Powered Rental Intelligence</title>
+
+    <title>RentAware AI</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
+
 <body>
-    <div class="container">
-        <!-- Sidebar -->
+
+    <div class="layout">
+
         <aside class="sidebar">
-            <div class="logo">
-                <span class="logo-icon">🏠</span>
-                <span class="logo-text">RentAware</span>
-            </div>
-            <nav class="nav">
-                <a href="#" class="nav-item active"><span class="icon">📊</span> Dashboard</a>
-                <a href="#" class="nav-item"><span class="icon">📁</span> My Agreements</a>
-                <a href="#" class="nav-item"><span class="icon">🔔</span> Smart Alerts</a>
-                <a href="#" class="nav-item"><span class="icon">⚙️</span> Settings</a>
+
+            <h2>🏠 RentAware</h2>
+
+            <nav>
+                <a class="active">Dashboard</a>
+                <a>Agreements</a>
+                <a>Alerts</a>
             </nav>
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <div class="avatar">U</div>
-                    <div class="user-details">
-                        <p class="user-name">Guest User</p>
-                        <p class="user-status">Free Plan</p>
-                    </div>
-                </div>
-            </div>
+
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search for clauses, documents...">
-                </div>
-                <div class="actions">
-                    <button class="btn btn-primary" id="uploadBtn">+ Upload Agreement</button>
-                    <input type="file" id="fileInput" style="display: none;" accept=".pdf">
-                </div>
+
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <h1>AI Rental Agreement Analyzer</h1>
+
+                <button id="uploadBtn">Upload Agreement</button>
+
+                <input type="file" id="fileInput" hidden accept=".pdf">
+
             </header>
 
-            <section class="dashboard-grid">
-                <!-- Welcome & Summary Card -->
-                <div class="card welcome-card">
-                    <h2>Welcome to RentAware Intelligence</h2>
-                    <p>Analyze your rental agreements for hidden risks and financial implications before you sign.</p>
-                </div>
 
-                <!-- Risk Score Card -->
-                <div class="card risk-card">
-                    <h3>Overall Risk Score</h3>
-                    <div class="risk-meter-container">
+
+            <section class="grid">
+
+                <div class="card">
+
+                    <h3>Risk Score</h3>
+
+                    <div class="chart">
+
                         <canvas id="riskChart"></canvas>
-                        <div class="risk-label" id="riskLevel">N/A</div>
+
+                        <div id="riskLevel">N/A</div>
+
                     </div>
-                    <p id="riskReason">Upload an agreement to see the analysis.</p>
+
+                    <p id="riskReason">Waiting for analysis</p>
+
                 </div>
 
-                <!-- Clauses Card -->
-                <div class="card clauses-card">
-                    <h3>Key Clauses Identified</h3>
-                    <div class="clauses-list" id="clausesList">
-                        <div class="empty-state">No clauses detected yet.</div>
-                    </div>
+
+
+                <div class="card">
+
+                    <h3>Detected Clauses</h3>
+
+                    <div id="clausesList">No clauses yet</div>
+
                 </div>
 
-                <!-- Smart Alerts Card -->
-                <div class="card alerts-card">
-                    <h3>Smart Alerts</h3>
-                    <div class="alerts-list" id="alertsList">
-                        <div class="empty-state">No upcoming alerts.</div>
-                    </div>
+
+
+                <div class="card">
+
+                    <h3>Alerts</h3>
+
+                    <div id="alertsList">No alerts</div>
+
                 </div>
 
-                <!-- Chatbot Interface -->
-                <div class="card chatbot-card">
-                    <h3>AI Intelligence Chatbot</h3>
-                    <div class="chat-container" id="chatContainer">
-                        <div class="chat-msg system">
-                            Hello! I am grounded in your document. Ask me anything about the uploaded agreement.
-                        </div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="chatInput" placeholder="Ask about notice period, deposit refund...">
-                        <button id="sendBtn">Send</button>
-                    </div>
-                </div>
             </section>
+
+
+
+            <section class="card chat">
+
+                <h3>AI Assistant</h3>
+
+                <div id="chatContainer" class="chatbox">
+
+                    <div class="msg bot">Upload a document first</div>
+
+                </div>
+
+                <div class="chatinput">
+
+                    <input id="chatInput" placeholder="Ask about agreement">
+
+                    <button id="sendBtn">Send</button>
+
+                </div>
+
+            </section>
+
         </main>
+
     </div>
 
-    <!-- Modals -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <h3>Processing Document...</h3>
-            <div class="loader"></div>
-            <p>Our AI is extracting clauses and calculating risk scores.</p>
-        </div>
-    </div>
 
-    <!-- Clause Detail Modal -->
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <h3 id="detailTitle">Clause Detail</h3>
-            <div class="detail-body">
-                <p id="detailContent"></p>
-            </div>
-            <button class="btn btn-primary" onclick="closeModal('detailModal')">Close</button>
-        </div>
-    </div>
 
     <script src="assets/js/app.js"></script>
+
 </body>
 
 </html>
