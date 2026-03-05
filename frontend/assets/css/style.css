@@ -14,7 +14,7 @@ body {
 
 /* Layout */
 
-.container {
+.layout {
     display: flex;
     min-height: 100vh;
 }
@@ -99,7 +99,7 @@ button:hover {
 
 /* Risk Chart */
 
-.chart-wrap {
+.chart{
     position: relative;
     height: 200px;
 }
@@ -165,7 +165,7 @@ button:hover {
     margin-top: 10px;
 }
 
-.chat-box {
+.chatbox {
     height: 180px;
     overflow-y: auto;
     background: #f9fafb;
