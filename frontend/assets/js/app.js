@@ -3,6 +3,34 @@ const API = "http://127.0.0.1:8000";
 let currentDocId = null;
 let userPhone = null;
 
+// Theme Toggle
+const themeToggle = document.getElementById("themeToggle");
+const currentTheme = localStorage.getItem("theme") || "light";
+
+// Apply saved theme on load
+document.body.setAttribute("data-theme", currentTheme);
+updateThemeIcon(currentTheme);
+
+themeToggle.addEventListener("click", () => {
+    const theme = document.body.getAttribute("data-theme");
+    const newTheme = theme === "dark" ? "light" : "dark";
+    
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme) {
+    const icon = themeToggle.querySelector("i");
+    if (theme === "dark") {
+        icon.className = "fas fa-sun";
+        themeToggle.title = "Switch to Light Mode";
+    } else {
+        icon.className = "fas fa-moon";
+        themeToggle.title = "Switch to Dark Mode";
+    }
+}
+
 const uploadBtn = document.getElementById("uploadBtn");
 const fileInput = document.getElementById("fileInput");
 
