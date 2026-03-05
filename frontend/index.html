@@ -2,121 +2,148 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>RentAware AI</title>
-
+    <title>RentAware - AI Rental Agreement Analyzer</title>
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
-
 <body>
-
     <div class="layout">
-
+        <!-- Sidebar -->
         <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>RentAware</span>
+                </div>
+                <p class="tagline">AI-Powered Agreement Analyzer</p>
+            </div>
 
-            <h2>🏠 RentAware</h2>
-
-            <nav>
-                <a class="active">Dashboard</a>
-                <a>Agreements</a>
-                <a>Alerts</a>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#documents" class="nav-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Documents</span>
+                </a>
+                <a href="#alerts" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
             </nav>
 
+            <div class="sidebar-footer">
+                <div class="help-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Upload documents to analyze rental agreements and get instant insights</p>
+                </div>
+            </div>
         </aside>
 
-
-
+        <!-- Main Content -->
         <main class="main">
-
+            <!-- Header -->
             <header class="topbar">
-
-                <h1>AI Rental Agreement Analyzer</h1>
-
-                <button id="uploadBtn">Upload Agreement</button>
-
-                <input type="file" id="fileInput" hidden accept=".pdf">
-
+                <div class="header-content">
+                    <div>
+                        <h1>AI Rental Agreement Analyzer</h1>
+                        <p class="header-subtitle">Upload and analyze your rental agreements instantly</p>
+                    </div>
+                    <button id="uploadBtn" class="btn btn-primary btn-lg">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Upload Agreement</span>
+                    </button>
+                </div>
+                <input type="file" id="fileInput" hidden accept=".pdf,.txt,text/plain">
             </header>
 
-
-
-            <section class="grid">
-
-                <div class="card">
-
-                    <h3>Risk Score</h3>
-
-                    <div class="chart">
-
-                        <canvas id="riskChart"></canvas>
-
-                        <div id="riskLevel">N/A</div>
-
+            <!-- Dashboard Cards Grid -->
+            <section class="dashboard">
+                <!-- Risk Score Card -->
+                <div class="card card-risk">
+                    <div class="card-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Risk Assessment</h3>
+                        <span class="badge-new">AI Analyzed</span>
                     </div>
-
-                    <p id="riskReason">Waiting for analysis</p>
-
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="riskChart"></canvas>
+                            <div class="chart-center">
+                                <div id="riskLevel" class="risk-score">N/A</div>
+                            </div>
+                        </div>
+                        <p id="riskReason" class="risk-reason">Waiting for document upload...</p>
+                    </div>
                 </div>
 
-
-
-                <div class="card">
-
-                    <h3>Detected Clauses</h3>
-
-                    <div id="clausesList">No clauses yet</div>
-
+                <!-- Clauses Card -->
+                <div class="card card-clauses">
+                    <div class="card-header">
+                        <h3><i class="fas fa-list-check"></i> Detected Clauses</h3>
+                        <span id="clauseCount" class="badge">0</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="clausesList" class="clauses-list">
+                            <div class="empty-state">
+                                <i class="fas fa-file-alt"></i>
+                                <p>No clauses detected yet</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-
-
-                <div class="card">
-
-                    <h3>Alerts</h3>
-
-                    <div id="alertsList">No alerts</div>
-
+                <!-- Alerts Card -->
+                <div class="card card-alerts">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar-check"></i> Important Deadlines</h3>
+                        <span id="alertCount" class="badge">0</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="alertsList" class="alerts-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bell-slash"></i>
+                                <p>No alerts yet</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </section>
 
-
-
-            <section class="card chat">
-
-                <h3>AI Assistant</h3>
-
-                <div id="chatContainer" class="chatbox">
-
-                    <div class="msg bot">Upload a document first</div>
-
+            <!-- AI Assistant Section -->
+            <section class="card card-chat">
+                <div class="card-header">
+                    <h3><i class="fas fa-robot"></i> AI Legal Assistant</h3>
+                    <i class="fas fa-info-circle" title="Ask questions about your agreement"></i>
                 </div>
-
-                <div class="chatinput">
-
-                    <input id="chatInput" placeholder="Ask about agreement">
-
-                    <button id="sendBtn">Send</button>
-
+                <div class="card-body">
+                    <div id="chatContainer" class="chatbox">
+                        <div class="msg bot">
+                            <i class="fas fa-circle-info"></i>
+                            <span>Upload a document to start asking questions about your rental agreement!</span>
+                        </div>
+                    </div>
+                    <div class="chat-input-group">
+                        <input id="chatInput" type="text" placeholder="Ask about terms, clauses, deadlines..." class="chat-input">
+                        <button id="sendBtn" class="btn btn-send">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </div>
-
             </section>
 
+            <!-- Footer -->
+            <footer class="footer">
+                <p>RentAware © 2026 | AI-Powered Rental Agreement Analysis | Keep your rights protected</p>
+            </footer>
         </main>
-
     </div>
 
-
-
     <script src="assets/js/app.js"></script>
-
 </body>
 
 </html>

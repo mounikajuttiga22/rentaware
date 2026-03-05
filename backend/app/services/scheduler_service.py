@@ -5,9 +5,13 @@ from app.services.sms_service import send_sms
 alerts = []
 sent_alerts = set()
 
+scheduler = BackgroundScheduler()
+
+
 def update_alerts(new_alerts):
     global alerts
     alerts = new_alerts
+
 
 def check_deadlines():
     print("Checking deadlines...")
@@ -15,20 +19,22 @@ def check_deadlines():
     today = datetime.now()
 
     for alert in alerts:
-        deadline = alert["deadline"]
+
+        # Convert string deadline to datetime
+        deadline = datetime.fromisoformat(alert["deadline"])
 
         if deadline - today <= timedelta(days=3) and alert["type"] not in sent_alerts:
 
+            print("SMS condition met!")
+
             send_sms(
-                "+919177177822",
-                "Reminder: Your rental agreement deadline is approaching."
+                "+919032921673",
+                f"Reminder: Your rental agreement {alert['type']} deadline is approaching."
             )
 
             sent_alerts.add(alert["type"])
 
 
-scheduler = BackgroundScheduler()
-
-scheduler.add_job(check_deadlines, "interval", minutes=1)
-
-scheduler.start()
+def start_scheduler():
+    scheduler.add_job(check_deadlines, "interval", seconds=10)
+    scheduler.start()

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentAware AI - Test</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <h2>🏠 RentAware</h2>
+            <nav>
+                <a class="active">Dashboard</a>
+                <a>Agreements</a>
+                <a>Alerts</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <h1>AI Rental Agreement Analyzer</h1>
+                <button id="uploadBtn">Upload Agreement</button>
+                <button id="testBtn" style="margin-left: 10px; background: #f59e0b;">Test Connection</button>
+                <input type="file" id="fileInput" hidden accept=".pdf,.txt,text/plain">
+            </header>
+
+            <section class="grid">
+                <div class="card">
+                    <h3>Risk Score</h3>
+                    <div class="chart">
+                        <canvas id="riskChart"></canvas>
+                        <div id="riskLevel">N/A</div>
+                    </div>
+                    <p id="riskReason">Waiting for analysis</p>
+                </div>
+
+                <div class="card">
+                    <h3>Detected Clauses</h3>
+                    <div id="clausesList">No clauses yet</div>
+                </div>
+
+                <div class="card">
+                    <h3>Alerts</h3>
+                    <div id="alertsList">No alerts</div>
+                </div>
+            </section>
+
+            <section class="card chat">
+                <h3>AI Assistant</h3>
+                <div id="chatContainer" class="chatbox">
+                    <div class="msg bot">Upload a document first</div>
+                </div>
+                <div class="chatinput">
+                    <input id="chatInput" placeholder="Ask about agreement">
+                    <button id="sendBtn">Send</button>
+                </div>
+            </section>
+
+            <section class="card" id="debugSection" style="background: #f3f4f6; margin-top: 20px;">
+                <h3>Debug Console</h3>
+                <div id="debugLog" style="background: #000; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; height: 150px; overflow-y: auto;">
+                    <div style="color: #0f0;">Debug console ready...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Debug utilities
+        const debugLog = document.getElementById("debugLog");
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        function addDebugLine(text, type = "info", color = "#0f0") {
+            const line = document.createElement("div");
+            line.style.color = type === "error" ? "#ff0000" : type === "warning" ? "#ffff00" : color;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            debugLog.appendChild(line);
+            debugLog.scrollTop = debugLog.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalLog(...args);
+            addDebugLine(args.join(" "), "info");
+        };
+
+        console.error = function(...args) {
+            originalError(...args);
+            addDebugLine(args.join(" "), "error");
+        };
+
+        // Test connection button
+        document.getElementById("testBtn").onclick = async () => {
+            addDebugLine("Testing backend connection...", "warning");
+            try {
+                const res = await fetch("http://127.0.0.1:8000/");
+                if (res.ok) {
+                    const data = await res.json();
+                    addDebugLine("✅ Backend connected! " + JSON.stringify(data), "info", "#00ff00");
+                } else {
+                    addDebugLine(`❌ Backend responded with ${res.status}`, "error");
+                }
+            } catch (err) {
+                addDebugLine(`❌ Connection error: ${err.message}`, "error");
+                addDebugLine("Make sure backend is running on http://127.0.0.1:8000", "warning");
+            }
+        };
+
+        addDebugLine("RentAware Debug Console loaded", "info", "#00ff00");
+        addDebugLine("Click 'Test Connection' to verify backend", "info");
+    </script>
+</body>
+
+</html>
