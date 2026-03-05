@@ -5,6 +5,10 @@ pymysql
 python-multipart
 python-dotenv
 pdfplumber
+pytesseract
+pdf2image
+pillow
+pypdfium2
 requests
 twilio
 apscheduler

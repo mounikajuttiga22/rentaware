@@ -1,4 +1,8 @@
-const API = "http://127.0.0.1:8000";
+const API = localStorage.getItem("rentaware_api") || (
+    window.location.protocol === "http:" || window.location.protocol === "https:"
+        ? `${window.location.protocol}//${window.location.hostname}:8000`
+        : "http://127.0.0.1:8000"
+);
 
 let currentDocId = null;
 let userPhone = null;
