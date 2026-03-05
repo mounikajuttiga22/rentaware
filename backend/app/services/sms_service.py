@@ -1,21 +1,24 @@
 from twilio.rest import Client
+import os
 
-ACCOUNT_SID = "AC5b89d46f37ed2e5e91e1f6af9f12bd2b"
-AUTH_TOKEN = "5e7310423ddb28b4fb9e107fc9e7ab6f"
+ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 
-FROM_NUMBER = "+13202335382"   # your Twilio number
+FROM_NUMBER = "+13202335382"
 
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
+
 def send_sms(phone, message):
+
     try:
-        message = client.messages.create(
+        sms = client.messages.create(
             body=message,
             from_=FROM_NUMBER,
             to=phone
         )
 
-        print("SMS sent successfully:", message.sid)
+        print("SMS sent successfully:", sms.sid)
 
     except Exception as e:
         print("Error sending SMS:", e)
