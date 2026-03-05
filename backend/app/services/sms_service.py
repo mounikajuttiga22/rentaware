@@ -1,8 +1,8 @@
 from twilio.rest import Client
-import os
 
-ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
-AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+# Twilio credentials (hardcoded)
+ACCOUNT_SID = "AC5b89d46f37ed2e5e91e1f6af9f12bd2b"
+AUTH_TOKEN = "b023dc262d781dc53636fd75f322f7d7"
 
 FROM_NUMBER = "+13202335382"
 
